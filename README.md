@@ -1,8 +1,8 @@
-`favr-db`
+`favr-server`
 
-Here is a list of guidelines to help you install the favr-db based on postgreSQL.
+Here is a list of guidelines to help you install the favr-server based on postgreSQL and Node.js.
 
-We used a busybox [base image](https://registry.hub.docker.com/u/jpetazzo/pglite/) from docker.
+We used a busybox [postgres base image](https://registry.hub.docker.com/u/jpetazzo/pglite/) from docker.
 
 We added the `-p 5432` to the running parameters for it was not getting forwarded properly.
 
