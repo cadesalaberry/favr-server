@@ -14,7 +14,7 @@ run-db:
 	echo "postgres:$${PG_PASSWORD}" #&&	\
 	# docker kill $${PG_ID} && echo "PostgreSQL test container has been killed."
 
-#TODO: Maybe 6969 should be dinamically chosen ?
+#TODO: Maybe 6969 should be dynamically chosen ?
 run-api:
 	@NODE_ID=$$(docker run --name favr-api --link favr-db:db -p 6969:6969 -d -v /favr/api:/home/default/favr-api jprjr/tinynode ./favr-api/app.js) &&	\
 	NODE_PORT=$$(docker port $${NODE_ID} 6969) &&	\
