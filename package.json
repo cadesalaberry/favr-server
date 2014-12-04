@@ -1,0 +1,12 @@
+{
+  "name": "favr-server",
+  "main": "app.js",
+  "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/cadesalaberry/favr-server.git"
+  },
+  "dependencies": {
+    "save": "~0.0.20",
+    "restify": "~2.8.3"
+  }
+}
