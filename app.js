@@ -5,11 +5,6 @@ var restify = require('restify')
 // Configure our HTTP server to respond with Hello World to all requests.
 var server = restify.createServer({ name: 'favr-api' })
  
-server.listen(6969, function () {
-  console.log('%s listening at %s', server.name, server.url)
-})
-
-
 server
   // Allow the use of POST
   .use(restify.fullResponse())
@@ -101,4 +96,8 @@ server.del('/user/:id', function (req, res, next) {
     // Send a 200 OK response
     res.send()
   })
+})
+
+server.listen(6969, function () {
+  console.log('%s listening at %s', server.name, server.url)
 })
