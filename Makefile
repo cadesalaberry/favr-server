@@ -30,4 +30,4 @@ reset:
 test:
 	./node_modules/.bin/mocha
 
-.PHONY: test
+.PHONY: test reset kill run-api run-db all
