@@ -15,7 +15,7 @@ run-db:
 	
 #TODO: Maybe 6969 should be dynamically chosen ?
 run-api:
-	NODE_ID=$$(docker run --name favr-api --link favr-db:db -p 6969:6969 -d -v /favr:/home/default/favr-api jprjr/tinynode ./favr-api/app.js) &&	\
+	@NODE_ID=$$(docker run --name favr-api --link favr-db:db -p 6969:6969 -d -v /favr:/home/default/favr-api jprjr/tinynode ./favr-api/app.js) &&	\
 	NODE_PORT=$$(docker port $${NODE_ID} 6969) &&	\
 	echo "Node.JS : $${NODE_PORT}." #&& \
 	#docker kill $${NODE_ID} && echo "Node.JS test container has been killed."
