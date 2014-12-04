@@ -2,7 +2,7 @@
 # By default, `/bin/sh' is used as the shell.
 SHELL=/bin/bash
 
-all: run-db run-api
+run: run-db run-api
 
 #TODO: Make 5432 inaccessible from the netword (take off `-p 5432:5432`) 
 run-db:
@@ -17,17 +17,18 @@ run-db:
 run-api:
 	@NODE_ID=$$(docker run --name favr-api --link favr-db:db -p 6969:6969 -d -v /favr:/home/default/favr-api jprjr/tinynode ./favr-api/app.js) &&	\
 	NODE_PORT=$$(docker port $${NODE_ID} 6969) &&	\
-	echo "Node.JS : $${NODE_PORT}." #&& \
-	#docker kill $${NODE_ID} && echo "Node.JS test container has been killed."
+	echo "Node.JS : $${NODE_PORT} $${PG_PASSWORD}" #&& \
 	
 kill:
 	@docker kill favr-db && echo "PostgreSQL test container has been killed."; \
 	docker kill favr-api && echo "Node.JS test container has been killed.";
 
-reset:
+remove: kill
 	docker rm favr-db; docker rm favr-api
+
+reset: remove run
 
 test:
 	./node_modules/.bin/mocha
 
-.PHONY: test reset kill run-api run-db all
+.PHONY: test reset remove kill run-api run-db run
