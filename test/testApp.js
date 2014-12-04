@@ -4,13 +4,14 @@ var favr = require("../app")
 
 // Client
 var client = restify.createJsonClient({
+  // url: 'http://localhost:6969/api/v0/', // Api endpoint
   url: 'http://localhost:6969',
   version: '~1.0'
 });
 
-describe('favr-server', function() {
+describe('favr-api', function() {
   
-  it('test double require', function() {
+  it('require', function() {
     require('../app').should.equal(favr);
   });
 
@@ -23,25 +24,25 @@ describe('favr-server', function() {
 
 describe('user', function() {
   
-  it('post new user', function() {
+  it('create new', function() {
     client.post('/user', { name: "John Doe" }, function (err, req, res, obj) {
       err.should.be.not.ok;
     });
   });
 
-  it('get created user', function() {
+  it('get newly created', function() {
     client.get('/user/0', function (err, req, res, obj) {
       err.should.be.not.ok;
     });
   });
 
-  it('put value to user', function() {
+  it('put value', function() {
     client.put('/user/0', { country: "USA" }, function (err, req, res, obj) {
       err.should.be.not.ok;
     });
   });
 
-  it('delete user', function() {
+  it('delete', function() {
     client.del('/user/0', function (err, req, res, obj) {
       err.should.be.not.ok;
     });
