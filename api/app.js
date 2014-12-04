@@ -7,7 +7,7 @@ var server = http.createServer(function (request, response) {
   response.end("Hello World\n");
 });
 
-// Listen on port 8000, IP defaults to 127.0.0.1
+// Listen on port 6969, IP defaults to 127.0.0.1
 server.listen(6969);
 
 // Put a friendly message on the terminal
