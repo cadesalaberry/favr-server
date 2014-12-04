@@ -12,12 +12,17 @@ run-db:
 	PG_PORT=$$(docker port $${PG_ID} 5432) &&	\
 	echo "PostgreSQL : $${PG_PORT}" &&	\
 	echo "postgres:$${PG_PASSWORD}" #&&	\
-	# docker kill $${PG_ID} && echo "PostgreSQL test container has been killed."
-
+	
 #TODO: Maybe 6969 should be dynamically chosen ?
 run-api:
-	@NODE_ID=$$(docker run --name favr-api --link favr-db:db -p 6969:6969 -d -v /favr/api:/home/default/favr-api jprjr/tinynode ./favr-api/app.js) &&	\
+	@NODE_ID=$$(docker run --name favr-api --link favr-db:db -p 6969:6969 -d -v /favr:/home/default/favr-api jprjr/tinynode ./favr-api/app.js) &&	\
 	NODE_PORT=$$(docker port $${NODE_ID} 6969) &&	\
 	echo "Node.JS : $${NODE_PORT}." #&& \
-	# docker kill $${NODE_ID} && echo "Node.JS test container has been killed."
+	#docker kill $${NODE_ID} && echo "Node.JS test container has been killed."
 	
+kill:
+	@docker kill favr-db && echo "PostgreSQL test container has been killed."; \
+  docker kill favr-api && echo "Node.JS test container has been killed.";
+
+reset:
+	docker rm favr-db; docker rm favr-api
