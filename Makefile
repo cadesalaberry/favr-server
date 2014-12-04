@@ -22,7 +22,12 @@ run-api:
 	
 kill:
 	@docker kill favr-db && echo "PostgreSQL test container has been killed."; \
-  docker kill favr-api && echo "Node.JS test container has been killed.";
+	docker kill favr-api && echo "Node.JS test container has been killed.";
 
 reset:
 	docker rm favr-db; docker rm favr-api
+
+test:
+	./node_modules/.bin/mocha
+
+.PHONY: test
