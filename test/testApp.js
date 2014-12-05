@@ -48,3 +48,30 @@ describe('user', function() {
     });
   });
 });
+
+describe('favour', function() {
+  
+  it('create new', function() {
+    client.post('/user', { name: "John Doe" }, function (err, req, res, obj) {
+      err.should.be.not.ok;
+    });
+  });
+
+  it('get newly created', function() {
+    client.get('/user/0', function (err, req, res, obj) {
+      err.should.be.not.ok;
+    });
+  });
+
+  it('put value', function() {
+    client.put('/user/0', { country: "USA" }, function (err, req, res, obj) {
+      err.should.be.not.ok;
+    });
+  });
+
+  it('delete', function() {
+    client.del('/user/0', function (err, req, res, obj) {
+      err.should.be.not.ok;
+    });
+  });
+});
